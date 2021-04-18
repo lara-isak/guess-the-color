@@ -9,6 +9,7 @@ var hardButton = document.querySelector("#hard");
 var squares = document.querySelectorAll(".square");
 var displayColor = document.querySelector("#colorDisplay");
 var message = document.querySelector("#message");
+var h1 = document.querySelector("h1");
 
 // displays a game color variable value in the span with the colorDisplay ID
 displayColor.innerText = gameColor;
@@ -24,6 +25,7 @@ for(var i = 0; i < squares.length; i++) {
     if (clickedColor === gameColor) {
       message.innerText = "Correct";
       changeColors(clickedColor);
+      h1.style.backgroundColor = gameColor;
     }
     else {
       this.style.backgroundColor = "#232323";
