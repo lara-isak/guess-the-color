@@ -48,13 +48,13 @@ function pickColor() {
 }
 
 // function that returns a single RGB color with 3 random numbers from 0 - 255
-// used to generate an array of random colors when when page restarts, when clicked on New Game / Easy / Hard buttons
+// used to generate an array of random colors when page restarts, when clicked on New Game / Easy / Hard buttons
 function randomColor() {
-  var o = Math.floor;
-  var r = Math.random;
-  var n = 256;
-
-  return "rgb(" + o(r() * n) + ", " + o(r() * n) + ", " + o(r() * n) + ")";
+  var r = Math.floor(Math.random() * 256);
+  var g = Math.floor(Math.random() * 256);
+  var b = Math.floor(Math.random() * 256);
+  // rgb(1, 2, 3)
+  return "rgb(" + r + ", " + g + ", " + b + ")";
 }
 
 // assigns a random rgb color to each index in colors array for the amount of squares
