@@ -1,48 +1,54 @@
-var colors = [];
+var colors = generateRandomColors(6);
 var easyColors = [];
-let gameColor;
-var random;
+// gets a random color from the colors array and assigns it to the gameColor variable
+var gameColor = pickColor();
 var easyRandom;
 var resetButton = document.querySelector("#reset");
 var easyButton = document.querySelector("#easy");
 var hardButton = document.querySelector("#hard");
-let squares = document.querySelectorAll(".square");
-let displayColor = document.querySelector("#colorDisplay");
+var squares = document.querySelectorAll(".square");
+var displayColor = document.querySelector("#colorDisplay");
 var message = document.querySelector("#message");
 
-// Assigns a random rgb color to each index in colors array for the amount of squares
-for(var i = 0; i < squares.length; i++) {
-  colors[i] = randomColor();
-}
-
-// Gets a random color from the colors array and assigns it to the gameColor variable
-gameColor = pickColor();
-
-// Displays a game color variable value in the span with the colorDisplay ID
+// displays a game color variable value in the span with the colorDisplay ID
 displayColor.innerText = gameColor;
 
-for(let i = 0; i < squares.length; i++) {
-  // Sets a random background color to each square
+for(var i = 0; i < squares.length; i++) {
+  // sets a random background color to each square
   squares[i].style.backgroundColor = colors[i]; 
 
-   squares[i].addEventListener("click", function() {
-    let clickedColor = this.style.backgroundColor;
+  // add click listener to squares
+  squares[i].addEventListener("click", function() {
+    var clickedColor = this.style.backgroundColor;
 
-    if (clickedColor == gameColor) {
-      winReset();
+    if (clickedColor === gameColor) {
+      message.innerText = "Correct";
+      changeColors(clickedColor);
     }
     else {
       this.style.backgroundColor = "#232323";
+      message.innerText = "Try Again";
     }
   });
 }
 
-function winReset() {
-  for(let i = 0; i < squares.length; i++) {
-    squares[i].style.backgroundColor = gameColor;
+// function for changing color in all squares
+// used when a user clicks on the correct (game) color
+function changeColors(color) {
+  for(var i = 0; i < squares.length; i++) {
+    squares[i].style.backgroundColor = color;
   }  
 }
 
+// function for picking up a random (game) color from colors array
+// used when page restarts, when clicked on New Game / Easy / Hard buttons 
+function pickColor() {
+  var random = Math.floor(Math.random() * colors.length);
+  return colors[random];
+}
+
+// function that returns a single RGB color with 3 random numbers from 0 - 255
+// used to generate an array of random colors when when page restarts, when clicked on New Game / Easy / Hard buttons
 function randomColor() {
   var o = Math.floor;
   var r = Math.random;
@@ -51,10 +57,19 @@ function randomColor() {
   return "rgb(" + o(r() * n) + ", " + o(r() * n) + ", " + o(r() * n) + ")";
 }
 
-function pickColor() {
-  random = Math.floor(Math.random() * colors.length);
-  return colors[random];
+// assigns a random rgb color to each index in colors array for the amount of squares
+function generateRandomColors(num) {
+  // make an array
+  var arr = [];
+  // add num random colors to array
+  for(var i = 0; i < num; i++) {
+    arr[i] = randomColor();
+  }
+  // return that array
+  return arr;
 }
+
+
 
 function newColors() {
   for(var i = 0; i < squares.length; i++) {
