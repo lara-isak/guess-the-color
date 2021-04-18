@@ -17,7 +17,6 @@ displayColor.innerText = gameColor;
 for(var i = 0; i < squares.length; i++) {
   // sets a random background color to each square
   squares[i].style.backgroundColor = colors[i]; 
-
   // add click listener to squares
   squares[i].addEventListener("click", function() {
     var clickedColor = this.style.backgroundColor;
@@ -71,6 +70,19 @@ function generateRandomColors(num) {
   return arr;
 }
 
+resetButton.addEventListener("click", function(){
+  // generate all new colors
+  colors = generateRandomColors(6);
+  // pick new color from array
+  gameColor = pickColor();
+  // change displayColor to game color
+  displayColor.innerText = gameColor;
+  // change colors of squares
+  for(var i = 0; i < squares.length; i++) {
+    squares[i].style.backgroundColor = colors[i];
+  }
+});
+
 
 
 function newColors() {
@@ -87,7 +99,6 @@ function newColors() {
   displayColor.innerHTML = gameColor;
 }
 
-// resetButton.addEventListener("click", newColors);
 
 /*
 - When we click on Easy mode 3 bottom squares need to be hidden
