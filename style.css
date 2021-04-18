@@ -9,7 +9,7 @@ h1 {
   line-height: 1.1;
   font-weight: normal;
   color: #fff;
-  background-color: #c0392b;
+  background-color: #a50b5e;
   margin: 0;
   text-transform: uppercase;
   padding: 20px 0;
@@ -41,9 +41,9 @@ button {
   flex-flow: row wrap;
 }
 
-.square {
+.circle {
   width: 30%;
-  background-color: #800080;
+  background-color: #a50b5e;
   padding-bottom: 30%;
   margin: 1.66%;
   border-radius: 50%;
