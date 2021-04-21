@@ -1,5 +1,5 @@
-var colors = generateRandomColors(6);
-// gets a random color from the colors array and assigns it to the gameColor variable
+var numCircles = 6;
+var colors = generateRandomColors(numCircles);
 var gameColor = pickColor();
 var resetButton = document.querySelector("#reset");
 var easyButton = document.querySelector("#easy");
@@ -68,28 +68,12 @@ function generateRandomColors(num) {
   return arr;
 }
 
-resetButton.addEventListener("click", function(){
-  // generate all new colors
-  colors = generateRandomColors(6);
-  // pick new color from array
-  gameColor = pickColor();
-  // change displayColor to game color
-  displayColor.innerText = gameColor;
-  // change colors of circles
-  for(var i = 0; i < circles.length; i++) {
-    circles[i].style.backgroundColor = colors[i];
-    circles[i].style.display = "block";
-  }
-  h1.style.backgroundColor = "#a50b5e";
-  resetButton.innerText = "New Colors";
-  message.innerText = "";
-});
-
 easyButton.addEventListener("click", function(){
   //add selected class to easyButton and remove selected class from hardButton
   easyButton.classList.add("selected");
   hardButton.classList.remove("selected"); 
-  colors = generateRandomColors(3);
+  numCircles = 3;
+  colors = generateRandomColors(numCircles);
   gameColor = pickColor();
   displayColor.innerText = gameColor;
   for(var i = 0; i < circles.length; i++) {
@@ -108,7 +92,8 @@ hardButton.addEventListener("click", function(){
   //add selected class to easyButton and remove selected class from hardButton
   hardButton.classList.add("selected");
   easyButton.classList.remove("selected"); 
-  colors = generateRandomColors(6);
+  numCircles = 6;
+  colors = generateRandomColors(numCircles);
   gameColor = pickColor();
   displayColor.innerText = gameColor;
   for(var i = 0; i < circles.length; i++) {
@@ -120,7 +105,24 @@ hardButton.addEventListener("click", function(){
   message.innerText = "";
 });
 
-
+resetButton.addEventListener("click", function(){
+  // generate all new colors
+  colors = generateRandomColors(numCircles);
+  // pick new color from array
+  gameColor = pickColor();
+  // change displayColor to game color
+  displayColor.innerText = gameColor;
+  // change colors of circles
+  for(var i = 0; i < circles.length; i++) {
+    circles[i].style.backgroundColor = colors[i];
+    // ! by removing the below line from the resetButton event handler we're only applying random colors to an amount of circles 
+    // depending on the button we clicked, 3 circles for easyButton and 6 circles for hardButton
+    //circles[i].style.display = "block";
+  }
+  h1.style.backgroundColor = "#a50b5e";
+  resetButton.innerText = "New Colors";
+  message.innerText = "";
+});
 
 /* Initial code for the Easy & Hard buttons
 function newColors() {
