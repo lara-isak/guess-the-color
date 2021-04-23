@@ -5,12 +5,47 @@ var resetButton = document.querySelector("#reset");
 var easyButton = document.querySelector("#easy");
 var hardButton = document.querySelector("#hard");
 var circles = document.querySelectorAll(".circle");
-var displayColor = document.querySelector("#colorDisplay");
+var gameColorDisplay = document.querySelector("#gameColorDisplay");
 var message = document.querySelector("#message");
 var h1 = document.querySelector("h1");
 
+/*code refactoring*/
+
+/* refactor buttons as modes (this way we can have multiple modes):
+  - mode variable to select all buttons with .mode class
+  - for loop to go through all the buttons
+  - add event listener to all buttons
+  - use this keyword to add .selected class to a clicked button
+  - figure out how many circles to show
+
+
+   create reset function which will contain the below, repeated code:
+  - pick new colors
+  - pick a new game color
+  - update circles to reflect changes
+*/
+
+function reset() {
+  // generate all new colors
+  colors = generateRandomColors(numCircles);
+  // pick new color from array and set it as a game color
+  gameColor = pickColor();
+  // display the value of the game color in h1
+  gameColorDisplay.innerText = gameColor;
+  resetButton.innerText = "New Colors";
+  message.innerText = "";
+  h1.style.backgroundColor = "#a50b5e";
+  // change colors of circles
+  for(var i = 0; i < circles.length; i++) {
+    circles[i].style.backgroundColor = colors[i];
+  }
+  
+}
+
+
+
 // displays a game color variable value in the span with the colorDisplay ID
-displayColor.innerText = gameColor;
+gameColorDisplay.innerText = gameColor;
 
 for(var i = 0; i < circles.length; i++) {
   // sets a random background color to each square
@@ -75,7 +110,7 @@ easyButton.addEventListener("click", function(){
   numCircles = 3;
   colors = generateRandomColors(numCircles);
   gameColor = pickColor();
-  displayColor.innerText = gameColor;
+  gameColorDisplay.innerText = gameColor;
   for(var i = 0; i < circles.length; i++) {
     if(colors[i])
       circles[i].style.backgroundColor = colors[i];
@@ -95,7 +130,7 @@ hardButton.addEventListener("click", function(){
   numCircles = 6;
   colors = generateRandomColors(numCircles);
   gameColor = pickColor();
-  displayColor.innerText = gameColor;
+  gameColorDisplay.innerText = gameColor;
   for(var i = 0; i < circles.length; i++) {
       circles[i].style.backgroundColor = colors[i];
       circles[i].style.display = "block";
@@ -105,24 +140,9 @@ hardButton.addEventListener("click", function(){
   message.innerText = "";
 });
 
-resetButton.addEventListener("click", function(){
-  // generate all new colors
-  colors = generateRandomColors(numCircles);
-  // pick new color from array
-  gameColor = pickColor();
-  // change displayColor to game color
-  displayColor.innerText = gameColor;
-  // change colors of circles
-  for(var i = 0; i < circles.length; i++) {
-    circles[i].style.backgroundColor = colors[i];
-    // ! by removing the below line from the resetButton event handler we're only applying random colors to an amount of circles 
-    // depending on the button we clicked, 3 circles for easyButton and 6 circles for hardButton
-    //circles[i].style.display = "block";
-  }
-  h1.style.backgroundColor = "#a50b5e";
-  resetButton.innerText = "New Colors";
-  message.innerText = "";
-});
+// resetButton.addEventListener("click", function(){
+  
+// });
 
 /* Initial code for the Easy & Hard buttons
 function newColors() {
@@ -135,8 +155,8 @@ function newColors() {
 
   } 
   gameColor = pickColor();
-  displayColor.innerHTML = "";
-  displayColor.innerHTML = gameColor;
+  gameColorDisplay.innerHTML = "";
+  gameColorDisplay.innerHTML = gameColor;
 }
 
 function easyMode() {
@@ -150,8 +170,8 @@ function easyMode() {
   }
   easyRandom = Math.floor(Math.random() * easyColors.length);
   gameColor = easyColors[easyRandom];
-  displayColor.innerHTML = "";
-  displayColor.innerHTML = gameColor;
+  gameColorDisplay.innerHTML = "";
+  gameColorDisplay.innerHTML = gameColor;
 }
 
 easyButton.addEventListener("click", easyMode);
