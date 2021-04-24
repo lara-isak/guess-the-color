@@ -81,3 +81,35 @@ button:focus {
   border-radius: 50%;
   transition: background .3s;
 }
+
+@media (max-width: 666px) {
+  h1 {
+    line-height: 1.2;
+  }
+
+  #gameColorDisplay {
+    font-size: 1em;
+  }
+
+  button {
+    display: block;
+    padding: 10px 0;
+    margin: 5px 0;
+    height: 100%;
+    width: 100%;
+    border: 1px solid #dddddd;
+  }
+
+  #message {
+    display: block;
+    width: 100%;
+    height: 20px;
+    padding: 10px 0;
+    font-weight: bold;
+    font-size: 1.1em;
+  }
+
+  #stripe {
+    height: 30%;
+  }
+}
