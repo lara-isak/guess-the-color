@@ -19,10 +19,13 @@ function init() {
 function setUpModeButtons() {
   for(var i = 0; i < modeButtons.length; i++){
     modeButtons[i].addEventListener("click", function(){
-      modeButtons[0].classList.remove("selected");
-      modeButtons[1].classList.remove("selected");
+      for(var i = 0; i < modeButtons.length; i++) {
+        modeButtons[i].classList.remove("selected");
+      }
       this.classList.add("selected");
-      this.innerText === "EASY" ? numCircles = 3 : numCircles = 6;
+      this.innerText === "EASY" ? numCircles = 3 
+      : this.innerText === "NORMAL" ? numCircles = 6 
+      : numCircles = 9;
       reset();
     });
   }
