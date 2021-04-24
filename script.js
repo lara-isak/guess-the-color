@@ -1,28 +1,49 @@
 var numCircles = 6;
-var colors = generateRandomColors(numCircles);
-var gameColor = pickColor();
+var colors = [];
+var gameColor;
 var resetButton = document.querySelector("#reset");
-var easyButton = document.querySelector("#easy");
-var hardButton = document.querySelector("#hard");
 var circles = document.querySelectorAll(".circle");
 var gameColorDisplay = document.querySelector("#gameColorDisplay");
 var message = document.querySelector("#message");
 var h1 = document.querySelector("h1");
 var modeButtons = document.querySelectorAll(".mode");
 
-/*code refactoring*/
+init();
 
-/* 
-*/
+function init() {
+  setUpModeButtons();
+  setUpCirclesGame();
+  reset();
+}
 
-for(var i = 0; i < modeButtons.length; i++){
-  modeButtons[i].addEventListener("click", function(){
-    modeButtons[0].classList.remove("selected");
-    modeButtons[1].classList.remove("selected");
-    this.classList.add("selected");
-    this.innerText === "EASY" ? numCircles = 3 : numCircles = 6;
-    reset();
-  });
+function setUpModeButtons() {
+  for(var i = 0; i < modeButtons.length; i++){
+    modeButtons[i].addEventListener("click", function(){
+      modeButtons[0].classList.remove("selected");
+      modeButtons[1].classList.remove("selected");
+      this.classList.add("selected");
+      this.innerText === "EASY" ? numCircles = 3 : numCircles = 6;
+      reset();
+    });
+  }
+}
+
+function setUpCirclesGame() {
+  for(var i = 0; i < circles.length; i++) {
+    circles[i].addEventListener("click", function() {
+      var clickedColor = this.style.backgroundColor;
+      if (clickedColor === gameColor) {
+        message.innerText = "Correct!";
+        changeColorsOnWin(clickedColor);
+        h1.style.backgroundColor = gameColor;
+        resetButton.innerText = "Play Again?";
+      }
+      else {
+        this.style.backgroundColor = "#232323";
+        message.innerText = "Try Again";
+      }
+    });
+  }
 }
 
 function reset() {
@@ -50,31 +71,9 @@ resetButton.addEventListener("click", function(){
   reset();
 });
 
-// displays a game color variable value in the span with the colorDisplay ID
-gameColorDisplay.innerText = gameColor;
-
-for(var i = 0; i < circles.length; i++) {
-  // sets a random background color to each square
-  circles[i].style.backgroundColor = colors[i]; 
-  // add click listener to circles
-  circles[i].addEventListener("click", function() {
-    var clickedColor = this.style.backgroundColor;
-    if (clickedColor === gameColor) {
-      message.innerText = "Correct!";
-      changeColors(clickedColor);
-      h1.style.backgroundColor = gameColor;
-      resetButton.innerText = "Play Again?";
-    }
-    else {
-      this.style.backgroundColor = "#232323";
-      message.innerText = "Try Again";
-    }
-  });
-}
-
 // function for changing color in all circles
 // used when a user clicks on the correct (game) color
-function changeColors(color) {
+function changeColorsOnWin(color) {
   for(var i = 0; i < circles.length; i++) {
     circles[i].style.backgroundColor = color;
   }  
