@@ -63,7 +63,7 @@ button:focus {
 .selected {
   background-color: #a50b5e;
   color: #fff;
-  border: none;
+  border: 1px solid #a50b5e;
 }
 
 #container {
