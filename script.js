@@ -8,22 +8,22 @@ var circles = document.querySelectorAll(".circle");
 var gameColorDisplay = document.querySelector("#gameColorDisplay");
 var message = document.querySelector("#message");
 var h1 = document.querySelector("h1");
+var modeButtons = document.querySelectorAll(".mode");
 
 /*code refactoring*/
 
-/* refactor buttons as modes (this way we can have multiple modes):
-  - mode variable to select all buttons with .mode class
-  - for loop to go through all the buttons
-  - add event listener to all buttons
-  - use this keyword to add .selected class to a clicked button
-  - figure out how many circles to show
-
-
-   create reset function which will contain the below, repeated code:
-  - pick new colors
-  - pick a new game color
-  - update circles to reflect changes
+/* 
 */
+
+for(var i = 0; i < modeButtons.length; i++){
+  modeButtons[i].addEventListener("click", function(){
+    modeButtons[0].classList.remove("selected");
+    modeButtons[1].classList.remove("selected");
+    this.classList.add("selected");
+    this.innerText === "EASY" ? numCircles = 3 : numCircles = 6;
+    reset();
+  });
+}
 
 function reset() {
   // generate all new colors
@@ -37,12 +37,18 @@ function reset() {
   h1.style.backgroundColor = "#a50b5e";
   // change colors of circles
   for(var i = 0; i < circles.length; i++) {
-    circles[i].style.backgroundColor = colors[i];
-  }
-  
+    if(colors[i]) {
+      circles[i].style.display = "block";
+      circles[i].style.backgroundColor = colors[i];
+    } else {
+      circles[i].style.display = "none";
+    }    
+  }  
 }
 
-
+resetButton.addEventListener("click", function(){
+  reset();
+});
 
 // displays a game color variable value in the span with the colorDisplay ID
 gameColorDisplay.innerText = gameColor;
@@ -54,7 +60,7 @@ for(var i = 0; i < circles.length; i++) {
   circles[i].addEventListener("click", function() {
     var clickedColor = this.style.backgroundColor;
     if (clickedColor === gameColor) {
-      message.innerText = "Correct";
+      message.innerText = "Correct!";
       changeColors(clickedColor);
       h1.style.backgroundColor = gameColor;
       resetButton.innerText = "Play Again?";
@@ -103,46 +109,6 @@ function generateRandomColors(num) {
   return arr;
 }
 
-easyButton.addEventListener("click", function(){
-  //add selected class to easyButton and remove selected class from hardButton
-  easyButton.classList.add("selected");
-  hardButton.classList.remove("selected"); 
-  numCircles = 3;
-  colors = generateRandomColors(numCircles);
-  gameColor = pickColor();
-  gameColorDisplay.innerText = gameColor;
-  for(var i = 0; i < circles.length; i++) {
-    if(colors[i])
-      circles[i].style.backgroundColor = colors[i];
-    else{
-      circles[i].style.display = "none";
-    }
-  }
-  h1.style.backgroundColor = "#a50b5e";
-  resetButton.innerText = "New Colors";
-  message.innerText = "";
-});
-
-hardButton.addEventListener("click", function(){
-  //add selected class to easyButton and remove selected class from hardButton
-  hardButton.classList.add("selected");
-  easyButton.classList.remove("selected"); 
-  numCircles = 6;
-  colors = generateRandomColors(numCircles);
-  gameColor = pickColor();
-  gameColorDisplay.innerText = gameColor;
-  for(var i = 0; i < circles.length; i++) {
-      circles[i].style.backgroundColor = colors[i];
-      circles[i].style.display = "block";
-    }
-  h1.style.backgroundColor = "#a50b5e";
-  resetButton.innerText = "New Colors";
-  message.innerText = "";
-});
-
-// resetButton.addEventListener("click", function(){
-  
-// });
 
 /* Initial code for the Easy & Hard buttons
 function newColors() {
