@@ -1,10 +1,30 @@
-# color-game
+# **Guess The Color**
+<table>
+<tr>
+<td>
+**Guess The Color** is a fun guessing game where you can test your knowledge of RGB color codes.<br>
+Choose one of 3 game levels (Easy, Normal & Hard) and let the games begin! :rainbow:
+</td>
+</tr>
+</table>
 
-Hello world!
+## Motivation
 
-This is my first JS project! :tada:
+Motivation for buidling this project was to test my JavaScript knowledge so far and the logic behind it.
 
-It took me a day and a half to complete it, I wanted to give up and check the "How To" tutorial 30+ times, 
-but I console.logged & googled my way through it, finally got it to work and I couldn't be more proud. :metal:
+## Link
 
-I know that JS code looks like :shit: right now, but I'll make it pretty and optimized, I promise. :hand:
+You can check out the game here: https://lara-isak.github.io/color-game/
+
+## Screenshots
+![Desktop version](https://github.com/lara-isak/color-game/blob/main/color_game.png)
+
+![Mobile version](https://github.com/lara-isak/color-game/blob/main/color_game_mobile.png)
+
+## Build with
+
+- HTML
+- CSS (with some Flexbox magic :sparkles:)
+- JavaScript
+
+
