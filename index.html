@@ -11,16 +11,22 @@
 </head>
 
 <body>
-  <h1>The Great<br>
-    <span id="gameColorDisplay">RGB </span>
-    <br>Color Game</h1>
+  <h1>The Great <span id="gameColorDisplay">RGB</span> Color Game</h1>
 
   <div id="stripe">
-    <button id="reset">New Colors</button>
-    <span id="message"></span>
-    <button class="mode">Easy</button>
-    <button class="mode selected">Normal</button>
-    <button class="mode">Hard</button>
+    <div class="resetButtonContainer">
+      <button id="reset">New Colors</button>
+    </div>
+
+    <div class="messageContainer">
+      <span id="message">Let the games begin</span>
+    </div>
+      
+    <div class="modeContainer">
+      <button class="mode">Easy</button>
+      <button class="mode selected">Normal</button>
+      <button class="mode">Hard</button>
+    </div>    
   </div>
 
   <div id="container">
