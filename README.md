@@ -8,7 +8,7 @@ Choose one of 3 game levels (Easy, Normal & Hard) and let the games begin! :rain
 </tr>
 </table>
 
-![](https://github.com/lara-isak/color-game/blob/main/color_game.gif)
+![](https://github.com/lara-isak/guess-the-color/blob/main/color_game.png)
 
 ## Motivation
 
@@ -16,7 +16,7 @@ Motivation for buidling this project was to test my JavaScript knowledge so far 
 
 ## Link
 
-You can check out the game here: https://lara-isak.github.io/color-game/
+You can check out the game here: https://lara-isak.github.io/guess-the-color/
 
 ## Build with
 
