@@ -109,8 +109,8 @@ button:focus {
   }
 
   #gameColorDisplay {
-    display: inline-block;
-    font-size: 1em;
+    display: block;
+    font-size: 1.2em;
   }
 
   #stripe {
@@ -132,9 +132,4 @@ button:focus {
     font-weight: bold;
     font-size: 1.1em;
   }
-
-  #container {
-    max-height: 100%;
-  }
-
 }
