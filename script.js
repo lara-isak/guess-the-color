@@ -16,6 +16,12 @@ function init() {
   reset();
 }
 
+/* 
+- set initial mode to Normal (by adding the selected class to the Normal button in HTML)
+- Easy mode needs to display 3 circles, Normal mode 6 and Hard mode 9
+- each button "resets" the game
+*/
+
 function setUpModeButtons() {
   for(var i = 0; i < modeButtons.length; i++){
     modeButtons[i].addEventListener("click", function(){
@@ -35,6 +41,7 @@ function setUpCirclesGame() {
   for(var i = 0; i < circles.length; i++) {
     circles[i].addEventListener("click", function() {
       var clickedColor = this.style.backgroundColor;
+      console.log(gameColor);
       if (clickedColor === gameColor) {
         message.innerText = "Correct!";
         changeColorsOnWin(clickedColor);
@@ -56,11 +63,14 @@ function reset() {
   gameColor = pickColor();
   // display the value of the game color in h1
   gameColorDisplay.innerText = gameColor;
+  // change text of the reset button
   resetButton.innerText = "New Colors";
+  // remove any text from the message displayed while playing
   message.innerText = "";
   h1.style.backgroundColor = "#a50b5e";
   // change colors of circles
   for(var i = 0; i < circles.length; i++) {
+    // if colors have been generated
     if(colors[i]) {
       circles[i].style.display = "block";
       circles[i].style.backgroundColor = colors[i];
@@ -85,9 +95,11 @@ function changeColorsOnWin(color) {
 // function for picking up a random (game) color from colors array
 // used when page restarts, when clicked on New Game / Easy / Hard buttons 
 function pickColor() {
+  console.log(colors);
   var random = Math.floor(Math.random() * colors.length);
   return colors[random];
 }
+console.log(pickColor());
 
 // function that returns a single RGB color with 3 random numbers from 0 - 255
 // used to generate an array of random colors when page restarts, when clicked on New Game / Easy / Hard buttons
